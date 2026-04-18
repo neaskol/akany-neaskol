@@ -45,7 +45,7 @@ export default buildConfig({
       connectionTimeoutMillis: 10_000,
     },
     // Push schema au runtime uniquement — pas pendant next build (conflits concurrents)
-    push: process.env.NEXT_PHASE !== 'phase-production-build',
+    push: true,
   }),
   editor: lexicalEditor(),
   secret: payloadSecret,
