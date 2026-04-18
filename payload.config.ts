@@ -44,6 +44,8 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URL || '',
       connectionTimeoutMillis: 10_000,
     },
+    // Synchronise le schéma automatiquement en dev (pas besoin de pnpm payload migrate)
+    push: process.env.NODE_ENV !== 'production',
   }),
   editor: lexicalEditor(),
   secret: payloadSecret,
