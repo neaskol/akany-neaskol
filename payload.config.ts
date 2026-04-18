@@ -5,13 +5,14 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-import { Users } from './collections/Users.js'
-import { Media } from './collections/Media.js'
-import { Testimonials } from './collections/Testimonials.js'
-import { Events } from './collections/Events.js'
-import { Team } from './collections/Team.js'
-import { Pages } from './collections/Pages.js'
-import { ContactSubmissions } from './collections/ContactSubmissions.js'
+import initMigration from './migrations/20240101_init'
+import { Users } from '@/collections/Users'
+import { Media } from '@/collections/Media'
+import { Testimonials } from '@/collections/Testimonials'
+import { Events } from '@/collections/Events'
+import { Team } from '@/collections/Team'
+import { Pages } from '@/collections/Pages'
+import { ContactSubmissions } from '@/collections/ContactSubmissions'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -44,8 +45,8 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URL || '',
       connectionTimeoutMillis: 10_000,
     },
-    // Push schema au runtime uniquement — pas pendant next build (conflits concurrents)
-    push: true,
+    push: false,
+    prodMigrations: [initMigration],
   }),
   editor: lexicalEditor(),
   secret: payloadSecret,
