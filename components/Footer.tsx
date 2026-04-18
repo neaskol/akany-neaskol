@@ -106,6 +106,7 @@ export default function Footer() {
 
         {/* Barre basse */}
         <div
+          className="footer-bottom"
           style={{
             display: 'flex',
             justifyContent: 'space-between',

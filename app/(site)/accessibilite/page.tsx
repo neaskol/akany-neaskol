@@ -10,11 +10,11 @@ export default function AccessibilitePage() {
   return (
     <>
       <section
+        className="hero-pad"
         style={{
           position: 'relative',
           background: 'var(--forest-800)',
           color: 'var(--paper)',
-          padding: '120px 0 64px',
           overflow: 'hidden',
         }}
       >

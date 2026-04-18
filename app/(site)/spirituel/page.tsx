@@ -40,12 +40,11 @@ export default function SpirituelPage() {
     <>
       {/* Hero */}
       <section
+        className="hero-pad"
         style={{
           position: 'relative',
           background: 'var(--forest-800)',
           color: 'var(--paper)',
-          minHeight: 600,
-          padding: '120px 0 72px',
           overflow: 'hidden',
         }}
       >
@@ -91,7 +90,7 @@ export default function SpirituelPage() {
                 >
                   <div>
                     <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ink-500)', marginBottom: 16 }}>— {a.tag}</div>
-                    <h3 className="display" style={{ fontSize: 44, color: 'var(--ink-900)', marginBottom: 20 }}>{a.title}</h3>
+                    <h3 className="display h-fluid-44" style={{ color: 'var(--ink-900)', marginBottom: 20 }}>{a.title}</h3>
                     <p style={{ fontFamily: 'var(--serif)', fontSize: 19, lineHeight: 1.5, color: 'var(--ink-700)' }}>{a.body}</p>
                     <div style={{ marginTop: 20, fontFamily: 'var(--mono)', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--flame-500)' }}>
                       {a.freq}

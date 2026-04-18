@@ -108,12 +108,11 @@ export default async function TemoignagePage({ params }: { params: Promise<{ slu
     <>
       {/* Hero */}
       <section
+        className="hero-pad"
         style={{
           position: 'relative',
           background: 'var(--forest-800)',
           color: 'var(--paper)',
-          minHeight: 560,
-          padding: '120px 0 64px',
           overflow: 'hidden',
         }}
       >
@@ -167,11 +166,11 @@ export default async function TemoignagePage({ params }: { params: Promise<{ slu
         <div className="shell">
           <Reveal>
             <blockquote style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center' }}>
-              <div style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 72, color, lineHeight: 1, marginBottom: 16 }}>&ldquo;</div>
+              <div className="display h-fluid-72" style={{ fontStyle: 'italic', color, lineHeight: 1, marginBottom: 16 }}>&ldquo;</div>
               <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(24px, 3.5vw, 40px)', lineHeight: 1.25, letterSpacing: '-0.01em', color: 'var(--ink-900)' }}>
                 {t.quote}
               </p>
-              <div style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 72, color, lineHeight: 1, marginTop: 16 }}>&rdquo;</div>
+              <div className="display h-fluid-72" style={{ fontStyle: 'italic', color, lineHeight: 1, marginTop: 16 }}>&rdquo;</div>
             </blockquote>
           </Reveal>
         </div>
@@ -203,16 +202,18 @@ export default async function TemoignagePage({ params }: { params: Promise<{ slu
 
       {/* Retour */}
       <section style={{ background: 'var(--cream-300)', padding: '48px 0' }}>
-        <div className="shell" style={{ display: 'flex', justifyContent: 'center', gap: 16 }}>
-          <Link href="/temoignages" className="btn btn-ghost" style={{ color: 'var(--ink-900)', borderColor: 'var(--line)' }}>
-            ← Tous les témoignages
-          </Link>
-          <Link href="/contact?sujet=Rejoindre%20l%27association" className="btn btn-flame">
-            Rejoindre Neaskol
-            <span className="arrow">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden><path d="M2 8 L8 2 M4 2 H8 V6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
-            </span>
-          </Link>
+        <div className="shell">
+          <div className="cta-row">
+            <Link href="/temoignages" className="btn btn-ghost" style={{ color: 'var(--ink-900)', borderColor: 'var(--line)' }}>
+              ← Tous les témoignages
+            </Link>
+            <Link href="/contact?sujet=Rejoindre%20l%27association" className="btn btn-flame">
+              Rejoindre Neaskol
+              <span className="arrow">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden><path d="M2 8 L8 2 M4 2 H8 V6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
     </>

@@ -78,12 +78,11 @@ export default async function TemoignagesPage({
     <>
       {/* Hero */}
       <section
+        className="hero-pad"
         style={{
           position: 'relative',
           background: 'var(--cream-300)',
           color: 'var(--ink-900)',
-          minHeight: 400,
-          padding: '120px 0 56px',
         }}
       >
         <Nav dark={false} />
@@ -107,8 +106,9 @@ export default async function TemoignagesPage({
                 <Link
                   key={f.value}
                   href={f.value ? `?pilier=${f.value}` : '/temoignages'}
+                  className="filter-btn"
                   style={{
-                    padding: '10px 20px',
+                    padding: '0 20px',
                     borderRadius: 'var(--radius-pill)',
                     border: '1px solid ' + (isActive ? 'var(--ink-900)' : 'var(--line)'),
                     background: isActive ? 'var(--ink-900)' : 'transparent',
@@ -118,7 +118,6 @@ export default async function TemoignagesPage({
                     textTransform: 'uppercase',
                     letterSpacing: '0.14em',
                     textDecoration: 'none',
-                    display: 'inline-block',
                   }}
                 >
                   {f.label}

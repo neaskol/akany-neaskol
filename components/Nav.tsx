@@ -107,7 +107,7 @@ export default function Nav({ dark = true }: { dark?: boolean }) {
             })}
           </div>
 
-          <Link href="/contact" className="btn btn-primary">
+          <Link href="/contact" className="btn btn-primary nav-contact">
             Contact
             <span className="arrow">
               <ArrowIcon />
@@ -166,6 +166,7 @@ export default function Nav({ dark = true }: { dark?: boolean }) {
           role="dialog"
           aria-modal="true"
           aria-label="Menu de navigation"
+          className="safe-overlay-pad"
           style={{
             position: 'fixed',
             inset: 0,
@@ -173,7 +174,6 @@ export default function Nav({ dark = true }: { dark?: boolean }) {
             background: 'var(--forest-900)',
             display: 'flex',
             flexDirection: 'column',
-            padding: '28px 20px',
           }}
         >
           {/* Header overlay */}
@@ -199,7 +199,7 @@ export default function Nav({ dark = true }: { dark?: boolean }) {
           </div>
 
           {/* Liens */}
-          <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 8 }}>
+          <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 8, overflowY: 'auto' }}>
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}

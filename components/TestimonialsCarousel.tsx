@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { PILLAR_COLORS } from '@/lib/pillarColors'
 import ImagePlaceholder from './ImagePlaceholder'
@@ -24,6 +24,17 @@ export default function TestimonialsCarousel({
   const length = testimonials.length
   const prev = useCallback(() => setActive((a) => (a - 1 + length) % length), [length])
   const next = useCallback(() => setActive((a) => (a + 1) % length), [length])
+  const touchStartX = useRef<number | null>(null)
+
+  function handleTouchStart(e: React.TouchEvent) {
+    touchStartX.current = e.touches[0].clientX
+  }
+  function handleTouchEnd(e: React.TouchEvent) {
+    if (touchStartX.current === null) return
+    const dx = e.changedTouches[0].clientX - touchStartX.current
+    if (Math.abs(dx) > 40) dx < 0 ? next() : prev()
+    touchStartX.current = null
+  }
 
   if (length === 0) {
     return null
@@ -46,36 +57,26 @@ export default function TestimonialsCarousel({
         role="region"
         aria-label="Carrousel de témoignages"
         onKeyDown={handleKeyDown}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
         tabIndex={0}
-        className="responsive-stage"
+        className="responsive-stage testimonial-stage"
         style={{
           gap: 28,
           background: 'var(--forest-800)',
           color: 'var(--paper)',
           borderRadius: 'var(--radius-lg)',
-          padding: 48,
           position: 'relative',
           overflow: 'hidden',
-          minHeight: 480,
-          outline: 'none',
         }}
       >
         {/* Guillemet géant */}
         <div
           aria-hidden
+          className="testimonial-giant-quote"
           style={{
-            position: 'absolute',
-            top: -60,
-            left: 24,
-            fontFamily: 'var(--serif)',
-            fontStyle: 'italic',
-            fontSize: 360,
-            lineHeight: 1,
             color,
-            opacity: 0.2,
             transition: 'color .5s ease',
-            pointerEvents: 'none',
-            userSelect: 'none',
           }}
         >
           &ldquo;

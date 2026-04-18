@@ -29,12 +29,11 @@ export default function AssociationPage() {
     <>
       {/* Hero */}
       <section
+        className="hero-pad"
         style={{
           position: 'relative',
           background: 'var(--forest-800)',
           color: 'var(--paper)',
-          minHeight: 600,
-          padding: '120px 0 72px',
           overflow: 'hidden',
         }}
       >
@@ -97,7 +96,7 @@ export default function AssociationPage() {
                     alignItems: 'start',
                   }}
                 >
-                  <div className="display" style={{ fontSize: 44, color: 'var(--flame-500)' }}>{item.year}</div>
+                  <div className="display h-fluid-44" style={{ color: 'var(--flame-500)' }}>{item.year}</div>
                   <div>
                     <div style={{ fontFamily: 'var(--sans)', fontWeight: 600, fontSize: 18, marginBottom: 8 }}>{item.label}</div>
                     <p style={{ fontFamily: 'var(--serif)', fontSize: 18, color: 'var(--ink-700)', lineHeight: 1.4 }}>{item.desc}</p>
@@ -126,7 +125,7 @@ export default function AssociationPage() {
               <Reveal key={v.label} delay={i * 60}>
                 <div style={{ background: 'var(--paper)', borderRadius: 'var(--radius-lg)', padding: '32px 36px', border: '1px solid var(--line)' }}>
                   <div style={{ fontFamily: 'var(--serif)', fontSize: 28, color: 'var(--flame-500)', marginBottom: 16 }}>{v.icon}</div>
-                  <h3 className="display" style={{ fontSize: 36, color: 'var(--ink-900)', marginBottom: 12 }}>{v.label}</h3>
+                  <h3 className="display h-fluid-36" style={{ color: 'var(--ink-900)', marginBottom: 12 }}>{v.label}</h3>
                   <p style={{ fontFamily: 'var(--serif)', fontSize: 18, lineHeight: 1.5, color: 'var(--ink-700)' }}>{v.body}</p>
                 </div>
               </Reveal>

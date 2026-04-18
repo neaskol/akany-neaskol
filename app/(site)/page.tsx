@@ -178,7 +178,7 @@ export default async function HomePage() {
             </div>
 
             {/* Droite : portrait + carte */}
-            <div style={{ position: 'relative', alignSelf: 'stretch' }}>
+            <div className="hero-portrait-col">
               <ImagePlaceholder
                 label="[portrait · membre · 900×1200]"
                 variant="dark"
@@ -194,11 +194,8 @@ export default async function HomePage() {
                 }}
               />
               <div
+                className="hero-float-card"
                 style={{
-                  position: 'absolute',
-                  left: -60,
-                  bottom: 24,
-                  maxWidth: 320,
                   background: 'var(--cream-500)',
                   color: 'var(--ink-900)',
                   borderRadius: 'var(--radius-md)',
@@ -241,7 +238,7 @@ export default async function HomePage() {
       >
         <div className="ticker-track">
           {[...MARQUEE_WORDS, ...MARQUEE_WORDS].map((w, i) => (
-            <span key={i} className="display" style={{ fontSize: 72, whiteSpace: 'nowrap', padding: '0 24px' }}>
+            <span key={i} className="display marquee-word" style={{ fontSize: 72, whiteSpace: 'nowrap', padding: '0 24px' }}>
               {w} <span className="it" style={{ marginLeft: 8 }}>—</span>
             </span>
           ))}
@@ -283,16 +280,10 @@ export default async function HomePage() {
                 borderBottom: '1px solid var(--line)',
               }}
             >
-              {PILLARS.map((p, i) => (
+              {PILLARS.map((p) => (
                 <div
                   key={p.key}
-                  style={{
-                    padding: '32px 28px',
-                    borderLeft: i > 0 ? '1px solid var(--line)' : 'none',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 14,
-                  }}
+                  className="pillar-card"
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     <span style={{ width: 14, height: 14, borderRadius: '50%', background: p.color }} />

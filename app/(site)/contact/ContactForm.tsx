@@ -36,7 +36,7 @@ export default function ContactForm() {
   if (status === 'success') {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-        <h2 className="display" style={{ fontSize: 48, color: 'var(--ink-900)', marginBottom: 8 }}>
+        <h2 className="display h-fluid-48" style={{ color: 'var(--ink-900)', marginBottom: 8 }}>
           Message <span className="it">envoyé.</span>
         </h2>
         <div
@@ -70,7 +70,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} aria-busy={pending} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-      <h2 className="display" style={{ fontSize: 48, color: 'var(--ink-900)', marginBottom: 8 }}>
+      <h2 className="display h-fluid-48" style={{ color: 'var(--ink-900)', marginBottom: 8 }}>
         Écrire un <span className="it">message.</span>
       </h2>
 

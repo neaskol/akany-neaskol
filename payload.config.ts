@@ -5,13 +5,13 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-import { Users } from '@/collections/Users'
-import { Media } from '@/collections/Media'
-import { Testimonials } from '@/collections/Testimonials'
-import { Events } from '@/collections/Events'
-import { Team } from '@/collections/Team'
-import { Pages } from '@/collections/Pages'
-import { ContactSubmissions } from '@/collections/ContactSubmissions'
+import { Users } from './collections/Users.js'
+import { Media } from './collections/Media.js'
+import { Testimonials } from './collections/Testimonials.js'
+import { Events } from './collections/Events.js'
+import { Team } from './collections/Team.js'
+import { Pages } from './collections/Pages.js'
+import { ContactSubmissions } from './collections/ContactSubmissions.js'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)

@@ -14,12 +14,11 @@ export default function ContactPage() {
     <>
       {/* Hero */}
       <section
+        className="hero-pad"
         style={{
           position: 'relative',
           background: 'var(--forest-800)',
           color: 'var(--paper)',
-          minHeight: 400,
-          padding: '120px 0 64px',
           overflow: 'hidden',
         }}
       >

@@ -295,10 +295,81 @@ button { font-family: inherit; }
 /* ── Navigation mobile ───────────────────────────────── */
 .nav-pill { display: flex; }
 .nav-hamburger { display: none; }
+.nav-contact { display: inline-flex; }
 
 @media (max-width: 768px) {
   .nav-pill { display: none; }
   .nav-hamburger { display: flex; }
+  /* Contact btn redondant avec le menu mobile CTA */
+  .nav-contact { display: none; }
+}
+
+/* ── Hero portrait column ────────────────────────────── */
+.hero-portrait-col {
+  position: relative;
+  align-self: stretch;
+}
+
+@media (max-width: 900px) {
+  .hero-portrait-col {
+    min-height: 380px;
+    margin-top: 24px;
+  }
+}
+
+/* ── Hero floating card ──────────────────────────────── */
+.hero-float-card {
+  position: absolute;
+  left: -60px;
+  bottom: 24px;
+  max-width: 320px;
+}
+
+@media (max-width: 1100px) {
+  .hero-float-card {
+    left: -20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-float-card {
+    position: static;
+    left: auto;
+    bottom: auto;
+    max-width: 100%;
+    margin-top: 16px;
+  }
+}
+
+/* ── Pilier cards — séparateurs adaptatifs ───────────── */
+.pillar-card {
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pillar-card + .pillar-card {
+  border-left: 1px solid var(--line);
+}
+
+@media (max-width: 1100px) {
+  /* 2 colonnes : garder border-left sauf sur 1re carte */
+}
+
+@media (max-width: 900px) {
+  .pillar-card + .pillar-card {
+    border-left: none;
+    border-top: 1px solid var(--line);
+  }
+}
+
+/* ── Marquee taille mobile ───────────────────────────── */
+@media (max-width: 640px) {
+  .marquee-word {
+    font-size: 44px !important;
+    padding: 0 16px !important;
+  }
 }
 
 @media (max-width: 1100px) {
@@ -342,4 +413,85 @@ button { font-family: inherit; }
     from { opacity: 1; transform: none; }
     to { opacity: 1; transform: none; }
   }
+}
+
+/* ── Hero padding responsive ─────────────────────────── */
+.hero-pad {
+  padding: clamp(88px, 12vh, 120px) 0 clamp(40px, 6vh, 72px);
+}
+
+/* ── Titres fluides ──────────────────────────────────── */
+.h-fluid-36 { font-size: clamp(26px, 5vw, 36px); }
+.h-fluid-44 { font-size: clamp(30px, 6vw, 44px); }
+.h-fluid-48 { font-size: clamp(32px, 6.5vw, 48px); }
+.h-fluid-72 { font-size: clamp(40px, 9vw, 72px); }
+
+/* ── Flex CTA row adaptatif ──────────────────────────── */
+.cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ── Bouton filtre — touch target ≥44px ──────────────── */
+.filter-btn {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ── Safe-area helpers (iOS notch / home indicator) ──── */
+.safe-overlay-pad {
+  padding-top: max(28px, env(safe-area-inset-top));
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
+  padding-left: max(20px, env(safe-area-inset-left));
+  padding-right: max(20px, env(safe-area-inset-right));
+}
+
+/* ── Carousel testimonials responsive ───────────────── */
+.testimonial-stage {
+  padding: 48px;
+  min-height: 480px;
+}
+@media (max-width: 720px) {
+  .testimonial-stage {
+    padding: 28px 24px;
+    min-height: auto;
+  }
+}
+
+.testimonial-giant-quote {
+  position: absolute;
+  top: -60px;
+  left: 24px;
+  font-size: 360px;
+  font-family: var(--serif);
+  font-style: italic;
+  line-height: 1;
+  opacity: 0.2;
+  pointer-events: none;
+  user-select: none;
+}
+@media (max-width: 900px) {
+  .testimonial-giant-quote {
+    font-size: 200px;
+    top: -30px;
+  }
+}
+@media (max-width: 640px) {
+  .testimonial-giant-quote { display: none; }
+}
+
+/* ── Footer barre basse ──────────────────────────────── */
+@media (max-width: 640px) {
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ── Focus-visible sur fond lemon (btn-primary) ──────── */
+.btn-primary:focus-visible {
+  outline-color: var(--ink-900);
 }

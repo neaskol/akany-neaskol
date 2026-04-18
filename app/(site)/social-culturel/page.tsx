@@ -60,7 +60,7 @@ function ActionCard({ item, accent }: { item: typeof SOCIAL_ACTIONS[0]; accent: 
     >
       <div>
         <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: accent, marginBottom: 16 }}>{item.tag}</div>
-        <h3 className="display" style={{ fontSize: 44, color: 'var(--ink-900)', marginBottom: 20 }}>{item.title}</h3>
+        <h3 className="display h-fluid-44" style={{ color: 'var(--ink-900)', marginBottom: 20 }}>{item.title}</h3>
         <p style={{ fontFamily: 'var(--serif)', fontSize: 19, lineHeight: 1.5, color: 'var(--ink-700)' }}>{item.body}</p>
       </div>
       <ImagePlaceholder label={item.image} style={{ borderRadius: 'var(--radius-md)', aspectRatio: '4/3' }} />
@@ -73,12 +73,11 @@ export default function SocialCulturelPage() {
     <>
       {/* Hero */}
       <section
+        className="hero-pad"
         style={{
           position: 'relative',
           background: 'var(--flame-500)',
           color: 'var(--paper)',
-          minHeight: 600,
-          padding: '120px 0 72px',
           overflow: 'hidden',
         }}
       >

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Instrument_Serif, Geist, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 
@@ -19,6 +19,16 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   weight: ['400', '500'],
 })
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FBFAF5' },
+    { media: '(prefers-color-scheme: dark)', color: '#0E3E3A' },
+  ],
+}
 
 export const metadata: Metadata = {
   title: {
