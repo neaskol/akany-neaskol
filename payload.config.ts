@@ -5,7 +5,7 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-import initMigration from './migrations/20240101_init'
+import * as initMigration from './migrations/20240101_init'
 import { Users } from '@/collections/Users'
 import { Media } from '@/collections/Media'
 import { Testimonials } from '@/collections/Testimonials'
