@@ -1,5 +1,7 @@
 import type { MigrateDownArgs, MigrateUpArgs } from '@payloadcms/db-postgres'
 
+export const name = '20240101_init'
+
 // Initial migration: create all Payload tables on first production deploy.
 // Uses adapter.requireDrizzleKit().pushSchema() which is available via @payloadcms/db-postgres.
 export async function up({ payload }: MigrateUpArgs): Promise<void> {
