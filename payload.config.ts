@@ -44,8 +44,8 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URL || '',
       connectionTimeoutMillis: 10_000,
     },
-    // Crée les tables automatiquement au premier démarrage
-    push: true,
+    // Push schema au runtime uniquement — pas pendant next build (conflits concurrents)
+    push: process.env.NEXT_PHASE !== 'phase-production-build',
   }),
   editor: lexicalEditor(),
   secret: payloadSecret,
