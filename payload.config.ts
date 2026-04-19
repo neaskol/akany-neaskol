@@ -5,7 +5,7 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-import * as initMigration from './migrations/20240101_init'
+import type { MigrateUpArgs, MigrateDownArgs } from '@payloadcms/db-postgres'
 import { Users } from '@/collections/Users'
 import { Media } from '@/collections/Media'
 import { Testimonials } from '@/collections/Testimonials'
@@ -46,7 +46,24 @@ export default buildConfig({
       connectionTimeoutMillis: 10_000,
     },
     push: false,
-    prodMigrations: [initMigration],
+    prodMigrations: [
+      {
+        name: '20240101_init',
+        async up({ payload }: MigrateUpArgs): Promise<void> {
+          const adapter = payload.db as any
+          const { pushSchema } = adapter.requireDrizzleKit()
+          const { apply } = await pushSchema(
+            adapter.schema,
+            adapter.drizzle,
+            adapter.schemaName ? [adapter.schemaName] : undefined,
+            adapter.tablesFilter,
+            adapter.extensions?.postgis ? ['postgis'] : undefined,
+          )
+          await apply()
+        },
+        async down({}: MigrateDownArgs): Promise<void> {},
+      },
+    ],
   }),
   editor: lexicalEditor(),
   secret: payloadSecret,
