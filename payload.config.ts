@@ -23,6 +23,7 @@ if (!payloadSecret) {
 }
 
 export default buildConfig({
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
   admin: {
     user: Users.slug,
     meta: {
