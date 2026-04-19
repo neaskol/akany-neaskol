@@ -2,7 +2,12 @@ import type { CollectionConfig } from 'payload'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
-  access: { read: () => true },
+  access: {
+    read: () => true,
+    create: ({ req }) => !!req.user,
+    update: ({ req }) => !!req.user,
+    delete: ({ req }) => !!req.user,
+  },
   admin: { useAsTitle: 'title' },
   labels: { singular: 'Page', plural: 'Pages' },
   versions: { drafts: true },
