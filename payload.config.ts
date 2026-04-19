@@ -26,7 +26,6 @@ export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
   admin: {
     user: Users.slug,
-    css: path.resolve(dirname, 'app/(payload)/custom.css'),
     meta: {
       titleSuffix: '— Akany Neaskol',
       icons: [{ rel: 'icon', url: '/favicon.ico' }],
