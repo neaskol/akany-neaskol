@@ -4,8 +4,8 @@ export const Media: CollectionConfig = {
   slug: 'media',
   access: {
     read: () => true,
-    create: ({ req }) => !!req.user,
-    update: ({ req }) => !!req.user,
+    create: () => true,
+    update: () => true,
     delete: ({ req }) => !!req.user,
   },
   labels: { singular: 'Média', plural: 'Médiathèque' },
