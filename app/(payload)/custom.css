@@ -56,7 +56,16 @@
   --font-body: var(--na-sans);
   --font-mono: var(--na-mono);
   --nav-width: var(--na-sidebar-w);
-  --base-body-size: 14px;
+}
+
+/* Force correct grid layout — Payload's 'auto' + __wrap's min-width:100%
+   creates a circular dependency collapsing the content column on list views. */
+.template-default--nav-open,
+.template-default--nav-hydrated.template-default--nav-open {
+  grid-template-columns: var(--na-sidebar-w) minmax(0, 1fr) !important;
+}
+.template-default--nav-hydrated:not(.template-default--nav-open) {
+  grid-template-columns: 0 minmax(0, 1fr) !important;
 }
 
 /* ── Base overrides ── */
@@ -67,6 +76,19 @@ body {
   font-size: 14px !important;
   line-height: 1.5 !important;
   -webkit-font-smoothing: antialiased !important;
+}
+
+/* ── Payload admin layout (sidebar + content side-by-side) ── */
+.template-default {
+  display: flex;
+  min-height: 100vh;
+  align-items: stretch;
+}
+.template-default__wrap {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  height: 100vh;
 }
 
 /* ── Custom nav shell ── */
