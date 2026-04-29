@@ -89,45 +89,53 @@ const TESTIMONIALS = [
   },
 ] as const
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(req: NextRequest) {
-  const secret = req.nextUrl.searchParams.get('secret')
-  if (!secret || secret !== process.env.PAYLOAD_SECRET) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
-
-  const payload = await getPayloadClient(15_000)
-  const results: { slug: string; action: string }[] = []
-
-  for (const t of TESTIMONIALS) {
-    const existing = await payload.find({
-      collection: 'testimonials',
-      where: { slug: { equals: t.slug } },
-      limit: 1,
-    })
-
-    if (existing.docs.length > 0) {
-      const doc = existing.docs[0]
-      await payload.update({
-        collection: 'testimonials',
-        id: doc.id,
-        data: { videoUrl: t.videoUrl },
-      })
-      results.push({ slug: t.slug, action: 'updated' })
-    } else {
-      await payload.create({
-        collection: 'testimonials',
-        data: {
-          name: t.name,
-          slug: t.slug,
-          pillar: t.pillar,
-          quote: t.quote,
-          videoUrl: t.videoUrl,
-          _status: 'draft',
-        },
-      })
-      results.push({ slug: t.slug, action: 'created (draft)' })
+  try {
+    const secret = req.nextUrl.searchParams.get('secret')
+    if (!secret || secret !== process.env.PAYLOAD_SECRET) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
-  }
 
-  return NextResponse.json({ ok: true, results })
+    const payload = await getPayloadClient(30_000)
+    const results: { slug: string; action: string }[] = []
+
+    for (const t of TESTIMONIALS) {
+      const existing = await payload.find({
+        collection: 'testimonials',
+        where: { slug: { equals: t.slug } },
+        limit: 1,
+      })
+
+      if (existing.docs.length > 0) {
+        const doc = existing.docs[0]
+        await payload.update({
+          collection: 'testimonials',
+          id: doc.id,
+          data: { videoUrl: t.videoUrl },
+        })
+        results.push({ slug: t.slug, action: 'updated' })
+      } else {
+        await payload.create({
+          collection: 'testimonials',
+          data: {
+            name: t.name,
+            slug: t.slug,
+            pillar: t.pillar,
+            quote: t.quote,
+            videoUrl: t.videoUrl,
+            _status: 'draft',
+          },
+        })
+        results.push({ slug: t.slug, action: 'created (draft)' })
+      }
+    }
+
+    return NextResponse.json({ ok: true, results })
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err)
+    console.error('[seed-testimonials]', err)
+    return NextResponse.json({ error: message }, { status: 500 })
+  }
 }

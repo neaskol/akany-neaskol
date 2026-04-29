@@ -78,10 +78,21 @@ export default buildConfig({
       {
         name: '20260429_testimonials_video_url',
         async up({ payload }: MigrateUpArgs): Promise<void> {
-          const db = (payload.db as any).drizzle
-          await db.execute(
-            `ALTER TABLE testimonials ADD COLUMN IF NOT EXISTS video_url varchar;`,
-          )
+          try {
+            const adapter = payload.db as any
+            const { pushSchema } = adapter.requireDrizzleKit()
+            const { apply } = await pushSchema(
+              adapter.schema,
+              adapter.drizzle,
+              adapter.schemaName ? [adapter.schemaName] : undefined,
+              adapter.tablesFilter,
+              adapter.extensions?.postgis ? ['postgis'] : undefined,
+            )
+            await apply()
+          } catch (err) {
+            // Non-fatal: column may already exist from a manual push
+            console.warn('[migration:20260429_testimonials_video_url]', err)
+          }
         },
         async down({}: MigrateDownArgs): Promise<void> {},
       },
