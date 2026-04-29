@@ -13,6 +13,12 @@ interface Testimonial {
   pillar: string
   quote: string
   portrait?: unknown
+  videoUrl?: string | null
+}
+
+function getYouTubeId(url: string): string | null {
+  const match = url.match(/[?&]v=([^&]{11})/)
+  return match ? match[1] : null
 }
 
 export default function TestimonialsCarousel({
@@ -44,6 +50,7 @@ export default function TestimonialsCarousel({
   const t = testimonials[currentIndex]
   const color = PILLAR_COLORS[t.pillar] ?? 'var(--lemon-500)'
   const roleLine = [t.role].filter(Boolean).join(' · ')
+  const youtubeId = t.videoUrl ? getYouTubeId(t.videoUrl) : null
 
   function handleKeyDown(e: React.KeyboardEvent) {
     if (e.key === 'ArrowLeft') prev()
@@ -146,13 +153,26 @@ export default function TestimonialsCarousel({
           </div>
         </div>
 
-        {/* Portrait */}
-        <ImagePlaceholder
-          label={`[portrait · ${t.name}]`}
-          variant="dark"
-          grain
-          style={{ borderRadius: 'var(--radius-md)', alignSelf: 'stretch' }}
-        />
+        {/* Portrait / vidéo */}
+        {youtubeId ? (
+          <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', alignSelf: 'stretch', display: 'flex', flexDirection: 'column', justifyContent: 'center', background: 'var(--ink-900)', minHeight: 220 }}>
+            <iframe
+              key={youtubeId}
+              src={`https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0`}
+              title={`Témoignage de ${t.name}`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ width: '100%', aspectRatio: '16/9', border: 0, display: 'block' }}
+            />
+          </div>
+        ) : (
+          <ImagePlaceholder
+            label={`[portrait · ${t.name}]`}
+            variant="dark"
+            grain
+            style={{ borderRadius: 'var(--radius-md)', alignSelf: 'stretch' }}
+          />
+        )}
       </div>
 
       {/* Vignettes */}

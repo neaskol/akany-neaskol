@@ -75,6 +75,16 @@ export default buildConfig({
         },
         async down({}: MigrateDownArgs): Promise<void> {},
       },
+      {
+        name: '20260429_testimonials_video_url',
+        async up({ payload }: MigrateUpArgs): Promise<void> {
+          const db = (payload.db as any).drizzle
+          await db.execute(
+            `ALTER TABLE testimonials ADD COLUMN IF NOT EXISTS video_url varchar;`,
+          )
+        },
+        async down({}: MigrateDownArgs): Promise<void> {},
+      },
     ],
   }),
   editor: lexicalEditor(),

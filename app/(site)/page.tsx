@@ -17,6 +17,7 @@ interface PayloadTestimonial {
   pillar: string
   quote: string
   portrait?: unknown
+  videoUrl?: string | null
 }
 
 interface PayloadEvent {
@@ -34,29 +35,61 @@ export const metadata: Metadata = {
 // Revalider toutes les heures (les événements / témoignages changent peu)
 export const revalidate = 3600
 
+const HOMEPAGE_PRIORITY_SLUGS = ['zo', 'jaky', 'keren', 'elina']
+
+function mapTestimonialDoc(d: Record<string, unknown>): PayloadTestimonial {
+  return {
+    slug: d.slug as string,
+    name: d.name as string,
+    age: (d.age as number | null) ?? null,
+    role: (d.role as string | null) ?? null,
+    place: (d.place as string | null) ?? null,
+    pillar: d.pillar as string,
+    quote: d.quote as string,
+    portrait: d.portrait ?? null,
+    videoUrl: (d.videoUrl as string | null) ?? null,
+  }
+}
+
 async function getTestimonials(): Promise<PayloadTestimonial[]> {
   try {
     const payload = await getPayloadClient()
-    const result = await withTimeout(
+    // Fetch the 4 priority testimonials first
+    const priority = await withTimeout(
+      payload.find({
+        collection: 'testimonials',
+        where: {
+          and: [
+            { _status: { equals: 'published' } },
+            { slug: { in: HOMEPAGE_PRIORITY_SLUGS } },
+          ],
+        },
+        limit: 4,
+      }),
+      5000,
+      'payload:find-home-testimonials',
+    )
+    if (priority.docs.length > 0) {
+      const docs = priority.docs as unknown as Record<string, unknown>[]
+      const sorted = [...docs].sort(
+        (a, b) =>
+          HOMEPAGE_PRIORITY_SLUGS.indexOf(a.slug as string) -
+          HOMEPAGE_PRIORITY_SLUGS.indexOf(b.slug as string),
+      )
+      return sorted.map(mapTestimonialDoc)
+    }
+    // Fallback: any 4 published
+    const fallback = await withTimeout(
       payload.find({
         collection: 'testimonials',
         where: { _status: { equals: 'published' } },
         limit: 4,
       }),
       5000,
-      'payload:find-home-testimonials',
+      'payload:find-home-testimonials-fallback',
     )
-    if (result.docs.length > 0) {
-      return result.docs.map((d) => ({
-        slug: d.slug as string,
-        name: d.name as string,
-        age: (d.age as number | null) ?? null,
-        role: (d.role as string | null) ?? null,
-        place: (d.place as string | null) ?? null,
-        pillar: d.pillar as string,
-        quote: d.quote as string,
-        portrait: d.portrait ?? null,
-      }))
+    if (fallback.docs.length > 0) {
+      return (fallback.docs as unknown as Record<string, unknown>[]).map(mapTestimonialDoc)
     }
   } catch (err) {
     console.error('[payload:testimonials]', err)

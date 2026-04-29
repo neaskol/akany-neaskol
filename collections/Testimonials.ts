@@ -61,5 +61,11 @@ export const Testimonials: CollectionConfig = {
       relationTo: 'media',
       label: 'Portrait (JPG/PNG/WebP · 5 Mo max)',
     },
+    {
+      name: 'videoUrl',
+      type: 'text',
+      label: 'Lien vidéo YouTube (témoignage filmé)',
+      admin: { description: 'Ex : https://www.youtube.com/watch?v=XYwFCu7kUyA' },
+    },
   ],
 }

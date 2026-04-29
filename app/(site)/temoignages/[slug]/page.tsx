@@ -21,6 +21,12 @@ interface TestimonialDetail {
   quote: string
   story: string[]
   portrait?: unknown
+  videoUrl?: string | null
+}
+
+function getYouTubeId(url: string): string | null {
+  const match = url.match(/[?&]v=([^&]{11})/)
+  return match ? match[1] : null
 }
 
 async function getTestimonial(slug: string): Promise<TestimonialDetail | null> {
@@ -53,6 +59,7 @@ async function getTestimonial(slug: string): Promise<TestimonialDetail | null> {
           ?.map((s) => s.paragraph)
           .filter(Boolean) ?? [],
         portrait: d.portrait ?? null,
+        videoUrl: (d.videoUrl as string | null) ?? null,
       }
     }
   } catch (err) {
@@ -175,6 +182,29 @@ export default async function TemoignagePage({ params }: { params: Promise<{ slu
           </Reveal>
         </div>
       </section>
+
+      {/* Vidéo */}
+      {t.videoUrl && (() => {
+        const vid = getYouTubeId(t.videoUrl)
+        return vid ? (
+          <section style={{ background: 'var(--ink-900)', padding: 'var(--section-y) 0' }}>
+            <div className="shell">
+              <Reveal>
+                <div className="eyebrow on-dark" style={{ marginBottom: 24 }}>Témoignage filmé</div>
+                <div style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', maxWidth: 800, margin: '0 auto' }}>
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${vid}?rel=0`}
+                    title={`Témoignage filmé de ${t.name}`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{ width: '100%', aspectRatio: '16/9', border: 0, display: 'block' }}
+                  />
+                </div>
+              </Reveal>
+            </div>
+          </section>
+        ) : null
+      })()}
 
       {/* Témoignage complet */}
       <section style={{ background: 'var(--paper)', padding: 'var(--section-y) 0' }}>

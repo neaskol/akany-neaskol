@@ -19,6 +19,7 @@ export const SEED_TESTIMONIALS = [
     ],
     since: '2022',
     portrait: null,
+    videoUrl: null,
   },
   {
     id: 'tiana',
@@ -38,6 +39,7 @@ export const SEED_TESTIMONIALS = [
     ],
     since: '2023',
     portrait: null,
+    videoUrl: null,
   },
   {
     id: 'rivo',
@@ -57,6 +59,7 @@ export const SEED_TESTIMONIALS = [
     ],
     since: '2019',
     portrait: null,
+    videoUrl: null,
   },
   {
     id: 'noro',
@@ -76,6 +79,7 @@ export const SEED_TESTIMONIALS = [
     ],
     since: '2010 (famille)',
     portrait: null,
+    videoUrl: null,
   },
 ]
 
