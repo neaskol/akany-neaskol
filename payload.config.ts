@@ -76,23 +76,16 @@ export default buildConfig({
         async down({}: MigrateDownArgs): Promise<void> {},
       },
       {
-        name: '20260429_testimonials_video_url',
+        name: '20260429_testimonials_video_url_v2',
         async up({ payload }: MigrateUpArgs): Promise<void> {
-          try {
-            const adapter = payload.db as any
-            const { pushSchema } = adapter.requireDrizzleKit()
-            const { apply } = await pushSchema(
-              adapter.schema,
-              adapter.drizzle,
-              adapter.schemaName ? [adapter.schemaName] : undefined,
-              adapter.tablesFilter,
-              adapter.extensions?.postgis ? ['postgis'] : undefined,
-            )
-            await apply()
-          } catch (err) {
-            // Non-fatal: column may already exist from a manual push
-            console.warn('[migration:20260429_testimonials_video_url]', err)
-          }
+          // Use the underlying pg pool for a targeted ALTER to avoid pushSchema prompts
+          const pool = (payload.db as any).drizzle.$client
+          await pool.query(
+            'ALTER TABLE testimonials ADD COLUMN IF NOT EXISTS video_url varchar',
+          )
+          await pool.query(
+            'ALTER TABLE "_testimonials_v" ADD COLUMN IF NOT EXISTS version_video_url varchar',
+          )
         },
         async down({}: MigrateDownArgs): Promise<void> {},
       },
