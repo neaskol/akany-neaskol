@@ -113,9 +113,9 @@ export async function GET(req: NextRequest) {
         await payload.update({
           collection: 'testimonials',
           id: doc.id,
-          data: { videoUrl: t.videoUrl },
+          data: { videoUrl: t.videoUrl, _status: 'published' },
         })
-        results.push({ slug: t.slug, action: 'updated' })
+        results.push({ slug: t.slug, action: 'published' })
       } else {
         await payload.create({
           collection: 'testimonials',
@@ -125,10 +125,10 @@ export async function GET(req: NextRequest) {
             pillar: t.pillar,
             quote: t.quote,
             videoUrl: t.videoUrl,
-            _status: 'draft',
+            _status: 'published',
           },
         })
-        results.push({ slug: t.slug, action: 'created (draft)' })
+        results.push({ slug: t.slug, action: 'created + published' })
       }
     }
 
