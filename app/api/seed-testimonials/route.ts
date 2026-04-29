@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { getPayloadClient } from '@/lib/payload'
 
 // Mapping complet : nom → slug, pilier, citation courte, lien YouTube
@@ -132,7 +133,9 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    return NextResponse.json({ ok: true, results })
+    revalidatePath('/')
+    revalidatePath('/temoignages')
+    return NextResponse.json({ ok: true, results, revalidated: ['/', '/temoignages'] })
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err)
     console.error('[seed-testimonials]', err)
