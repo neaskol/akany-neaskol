@@ -70,9 +70,9 @@ export default function Nav({ dark = true }: { dark?: boolean }) {
               marginLeft: 'auto',
               alignItems: 'center',
               gap: 4,
-              background: dark ? 'rgba(255,255,255,.08)' : 'rgba(0,0,0,.06)',
+              background: dark ? 'var(--glass-light-08)' : 'var(--glass-dark-06)',
               backdropFilter: 'blur(12px)',
-              border: `1px solid ${dark ? 'rgba(255,255,255,.12)' : 'rgba(0,0,0,.14)'}`,
+              border: `1px solid ${dark ? 'var(--glass-light-12)' : 'var(--glass-dark-14)'}`,
               borderRadius: 999,
               padding: 6,
             }}
@@ -87,7 +87,7 @@ export default function Nav({ dark = true }: { dark?: boolean }) {
                   style={{
                     background: isActive
                       ? dark
-                        ? 'rgba(255,255,255,.14)'
+                        ? 'var(--glass-light-14)'
                         : 'var(--ink-900)'
                       : 'transparent',
                     color: isActive && !dark ? 'var(--paper)' : textColor,
@@ -125,8 +125,8 @@ export default function Nav({ dark = true }: { dark?: boolean }) {
               width: 44,
               height: 44,
               borderRadius: '50%',
-              border: `1px solid ${dark ? 'rgba(255,255,255,.2)' : 'rgba(0,0,0,.12)'}`,
-              background: dark ? 'rgba(255,255,255,.08)' : 'rgba(0,0,0,.04)',
+              border: `1px solid ${dark ? 'var(--glass-light-20)' : 'var(--glass-dark-12)'}`,
+              background: dark ? 'var(--glass-light-08)' : 'var(--glass-dark-04)',
               backdropFilter: 'blur(12px)',
               cursor: 'pointer',
               display: 'flex',
@@ -185,8 +185,8 @@ export default function Nav({ dark = true }: { dark?: boolean }) {
               aria-label="Fermer le menu"
               style={{
                 width: 44, height: 44, borderRadius: '50%',
-                border: '1px solid rgba(255,255,255,.2)',
-                background: 'rgba(255,255,255,.08)',
+                border: '1px solid var(--glass-light-20)',
+                background: 'var(--glass-light-08)',
                 cursor: 'pointer',
                 color: 'var(--paper)',
                 fontSize: 20,
@@ -214,7 +214,7 @@ export default function Nav({ dark = true }: { dark?: boolean }) {
                   lineHeight: 1.1,
                   display: 'block',
                   padding: '8px 0',
-                  borderBottom: '1px solid rgba(255,255,255,.08)',
+                  borderBottom: '1px solid var(--glass-light-08)',
                 }}
               >
                 {item.label}

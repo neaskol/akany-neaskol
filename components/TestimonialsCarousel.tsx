@@ -124,7 +124,7 @@ export default function TestimonialsCarousel({
                 onClick={prev}
                 style={{
                   width: 52, height: 52, borderRadius: '50%',
-                  border: '1px solid rgba(255,255,255,.2)',
+                  border: '1px solid var(--glass-light-20)',
                   background: 'transparent', color: 'var(--paper)',
                   fontSize: 18, cursor: 'pointer',
                 }}

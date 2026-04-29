@@ -73,6 +73,7 @@ export default function ContactForm() {
       <h2 className="display h-fluid-48" style={{ color: 'var(--ink-900)', marginBottom: 8 }}>
         Écrire un <span className="it">message.</span>
       </h2>
+      <p className="sr-only">Les champs marqués d&rsquo;un * sont obligatoires.</p>
 
       <Field
         label="Votre nom"
@@ -182,7 +183,6 @@ function Field({
     fontSize: 15,
     color: 'var(--ink-900)',
     background: 'var(--cream-300)',
-    outline: 'none',
     resize: as === 'textarea' ? 'vertical' : undefined,
   }
 
@@ -192,7 +192,7 @@ function Field({
         htmlFor={id}
         style={{ fontFamily: 'var(--mono)', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--ink-500)' }}
       >
-        {label}{required && <span style={{ color: 'var(--flame-500)', marginLeft: 4 }}>*</span>}
+        {label}{required && <><span aria-hidden="true" style={{ color: 'var(--flame-500)', marginLeft: 4 }}>*</span><span className="sr-only"> (obligatoire)</span></>}
       </label>
       {as === 'textarea' ? (
         <textarea

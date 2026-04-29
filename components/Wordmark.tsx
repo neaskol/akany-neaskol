@@ -4,6 +4,7 @@ export default function Wordmark({ color = 'var(--paper)' }: { color?: string })
   return (
     <Link
       href="/"
+      aria-label="Akany Neaskol — accueil"
       style={{
         display: 'flex',
         alignItems: 'baseline',

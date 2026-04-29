@@ -50,7 +50,7 @@ export default function Footer() {
           style={{
             gap: 40,
             paddingBottom: 56,
-            borderBottom: '1px solid rgba(255,255,255,.1)',
+            borderBottom: '1px solid var(--paper-alpha-10)',
           }}
         >
           {/* Colonne logo */}
@@ -93,6 +93,8 @@ export default function Footer() {
                         fontFamily: 'var(--serif)',
                         fontSize: 20,
                         fontStyle: 'italic',
+                        paddingBlock: '8px',
+                        display: 'inline-block',
                       }}
                     >
                       {item.label}

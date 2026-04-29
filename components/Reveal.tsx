@@ -19,7 +19,7 @@ export default function Reveal({ children, delay = 0, style, className }: Reveal
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setTimeout(() => el.classList.add('in'), delay)
+            el.classList.add('in')
             io.unobserve(el)
           }
         })
@@ -31,7 +31,11 @@ export default function Reveal({ children, delay = 0, style, className }: Reveal
   }, [delay])
 
   return (
-    <div ref={ref} className={`reveal${className ? ` ${className}` : ''}`} style={style}>
+    <div
+      ref={ref}
+      className={`reveal${className ? ` ${className}` : ''}`}
+      style={{ transitionDelay: delay ? `${delay}ms` : undefined, ...style }}
+    >
       {children}
     </div>
   )

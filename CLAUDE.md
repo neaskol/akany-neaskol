@@ -1,5 +1,15 @@
 @AGENTS.md
 
+# Design Context
+
+PRODUCT.md à la racine du projet contient le brief de marque complet (registre, utilisateurs, personnalité, anti-références, principes). Lire avant tout travail UI.
+
+- **Registre :** brand (80 % marketing, 20 % admin CMS)
+- **Personnalité :** warm, rooted, faithful — pas mega-church slick
+- **WCAG :** AA (focus rings lemon sur fond clair, paper sur fond sombre)
+- **Tokens :** utiliser les variables CSS de `app/globals.css` — jamais de `rgba()` brut dans les composants. Alpha variants disponibles : `--lemon-500-tint`, `--flame-500-tint`, `--paper-alpha-10`, `--glass-light-08/12/14/20`, `--glass-dark-04/06/12/14`
+- **Interdits absolus :** `border-left/right > 1px` comme accent coloré, gradient text (`background-clip: text`), glassmorphism décoratif, em dashes (`—`) dans le JSX ou le copy, carte imbriquée dans une carte
+
 # Règles projet
 
 ## Payload CMS — import obligatoire lazy

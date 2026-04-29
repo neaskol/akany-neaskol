@@ -32,6 +32,22 @@
   /* Utilitaires */
   --line: rgba(10, 16, 15, 0.12);
 
+  /* Alpha variants — shared by Nav, Footer, and inline component styles */
+  --lemon-500-tint: rgba(238, 242, 76, 0.08);
+  --flame-500-tint: rgba(244, 106, 45, 0.06);
+  --paper-alpha-10: rgba(255, 255, 255, 0.1);
+  --forest-tint-soft: rgba(10, 46, 43, 0.06);
+
+  /* Glass tokens — Nav pill and overlay surfaces */
+  --glass-light-08: rgba(255, 255, 255, 0.08);
+  --glass-light-12: rgba(255, 255, 255, 0.12);
+  --glass-light-14: rgba(255, 255, 255, 0.14);
+  --glass-light-20: rgba(255, 255, 255, 0.20);
+  --glass-dark-04: rgba(0, 0, 0, 0.04);
+  --glass-dark-06: rgba(0, 0, 0, 0.06);
+  --glass-dark-12: rgba(0, 0, 0, 0.12);
+  --glass-dark-14: rgba(0, 0, 0, 0.14);
+
   /* Fonts (injectées par next/font dans layout.tsx) */
   --serif: var(--font-instrument-serif), 'Times New Roman', serif;
   --sans: var(--font-geist), 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -267,6 +283,7 @@ button { font-family: inherit; }
   gap: 0;
   width: max-content;
   animation: ticker 28s linear infinite;
+  will-change: transform;
 }
 @keyframes ticker {
   from { transform: translateX(0); }
@@ -494,4 +511,17 @@ button { font-family: inherit; }
 /* ── Focus-visible sur fond lemon (btn-primary) ──────── */
 .btn-primary:focus-visible {
   outline-color: var(--ink-900);
+}
+
+/* ── Utilitaire screen-reader only (WCAG) ────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

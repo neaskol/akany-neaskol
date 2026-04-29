@@ -108,6 +108,7 @@ export default async function HomePage() {
     <>
       {/* ── 01 Hero ─────────────────────────────────── */}
       <section
+        className="grain"
         style={{
           position: 'relative',
           background: 'var(--forest-800)',
@@ -125,8 +126,8 @@ export default async function HomePage() {
             position: 'absolute',
             inset: 0,
             backgroundImage: `
-              radial-gradient(ellipse at 70% 45%, rgba(238,242,76,.08) 0%, transparent 45%),
-              radial-gradient(ellipse at 20% 80%, rgba(244,106,45,.06) 0%, transparent 50%)
+              radial-gradient(ellipse at 70% 45%, var(--lemon-500-tint) 0%, transparent 45%),
+              radial-gradient(ellipse at 20% 80%, var(--flame-500-tint) 0%, transparent 50%)
             `,
           }}
         />
@@ -239,7 +240,7 @@ export default async function HomePage() {
         <div className="ticker-track">
           {[...MARQUEE_WORDS, ...MARQUEE_WORDS].map((w, i) => (
             <span key={i} className="display marquee-word" style={{ fontSize: 72, whiteSpace: 'nowrap', padding: '0 24px' }}>
-              {w} <span className="it" style={{ marginLeft: 8 }}>—</span>
+              {w} <span aria-hidden="true" style={{ marginLeft: 12, opacity: 0.4 }}>·</span>
             </span>
           ))}
         </div>
@@ -286,12 +287,12 @@ export default async function HomePage() {
                   className="pillar-card"
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <span style={{ width: 14, height: 14, borderRadius: '50%', background: p.color }} />
-                    <span style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ink-500)' }}>
-                      — {p.n}
+                    <span style={{ width: 10, height: 10, borderRadius: '50%', background: p.color }} />
+                    <span style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ink-500)' }}>
+                      {p.n}
                     </span>
                   </div>
-                  <h3 className="display" style={{ fontSize: 44, color: 'var(--ink-900)' }}>{p.label}</h3>
+                  <h3 className="display" style={{ fontSize: 'clamp(60px, 7vw, 96px)', lineHeight: 0.95, color: 'var(--ink-900)' }}>{p.label}</h3>
                   <p style={{ fontFamily: 'var(--serif)', fontSize: 18, color: 'var(--ink-700)', lineHeight: 1.35, maxWidth: 320 }}>{p.body}</p>
                 </div>
               ))}
@@ -340,13 +341,11 @@ export default async function HomePage() {
                 <div
                   style={{
                     marginTop: 44,
-                    padding: '20px 22px',
-                    background: 'var(--paper)',
-                    borderRadius: 'var(--radius-md)',
+                    paddingTop: 24,
+                    borderTop: '1px solid var(--line)',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 20,
-                    border: '1px solid var(--line)',
+                    gap: 24,
                   }}
                 >
                   <div style={{ display: 'flex' }}>
@@ -354,22 +353,22 @@ export default async function HomePage() {
                       <div
                         key={i}
                         style={{
-                          width: 40,
-                          height: 40,
+                          width: 36,
+                          height: 36,
                           borderRadius: '50%',
                           background: c,
-                          border: '2px solid var(--paper)',
-                          marginLeft: i === 0 ? 0 : -12,
+                          border: '2px solid var(--cream-300)',
+                          marginLeft: i === 0 ? 0 : -10,
                         }}
                       />
                     ))}
                   </div>
                   <div>
-                    <div className="display" style={{ fontSize: 36, lineHeight: 1 }}>
-                      {yearsActive}<span style={{ color: 'var(--flame-500)' }}>+</span>
+                    <div className="display" style={{ fontSize: 48, lineHeight: 1 }}>
+                      {yearsActive} <span className="it" style={{ fontSize: 36, color: 'var(--ink-500)' }}>ans</span>
                     </div>
                     <div style={{ fontFamily: 'var(--mono)', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--ink-500)', marginTop: 4 }}>
-                      années à Ankadivato
+                      à Ankadivato
                     </div>
                   </div>
                 </div>
