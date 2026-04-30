@@ -130,6 +130,13 @@ const TESTIMONIALS = [
     quote: 'Dans cette communauté, chaque jeune a sa place — la mienne, je l\'ai trouvée ici.',
     videoUrl: 'https://www.youtube.com/watch?v=sNZz31uEKZ0',
   },
+  {
+    name: 'Tanteraka',
+    slug: 'tanteraka',
+    pillar: 'spirituel',
+    quote: 'Neaskol m\'a aidé à grandir dans la foi et à devenir la personne que je voulais être.',
+    videoUrl: 'https://www.youtube.com/watch?v=dBR8UOCCPBU',
+  },
 ] as const
 
 export const dynamic = 'force-dynamic'
