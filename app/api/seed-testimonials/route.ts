@@ -88,6 +88,48 @@ const TESTIMONIALS = [
     quote: 'Chaque geste de solidarité ici devient un lien — c\'est ça, Neaskol.',
     videoUrl: 'https://www.youtube.com/watch?v=6gVs6H6yf5Y',
   },
+  {
+    name: 'Maryna',
+    slug: 'maryna',
+    pillar: 'spirituel',
+    quote: 'Neaskol m\'a montré que la foi se vit ensemble, dans la joie et l\'engagement.',
+    videoUrl: 'https://www.youtube.com/watch?v=Odoxb8J5-nw',
+  },
+  {
+    name: 'Miharitiana',
+    slug: 'miharitiana',
+    pillar: 'culturel',
+    quote: 'Ici, j\'ai trouvé un espace pour grandir — comme personne et comme chrétien.',
+    videoUrl: 'https://www.youtube.com/watch?v=TsqrrGPwaxw',
+  },
+  {
+    name: 'Mirana',
+    slug: 'mirana',
+    pillar: 'social',
+    quote: 'Servir, c\'est ce qui m\'a appris à me connaître moi-même.',
+    videoUrl: 'https://www.youtube.com/watch?v=whZVfnFCGmQ',
+  },
+  {
+    name: 'Nantenaina',
+    slug: 'nantenaina',
+    pillar: 'spirituel',
+    quote: 'La prière et l\'action vont ensemble — Neaskol me le rappelle chaque semaine.',
+    videoUrl: 'https://www.youtube.com/watch?v=gEy-dkJPx08',
+  },
+  {
+    name: 'Stephanie',
+    slug: 'stephanie',
+    pillar: 'social',
+    quote: 'J\'ai appris à donner sans compter, et c\'est Neaskol qui m\'a ouvert ce chemin.',
+    videoUrl: 'https://www.youtube.com/watch?v=UkpvmdEfgAI',
+  },
+  {
+    name: 'Sam',
+    slug: 'sam',
+    pillar: 'culturel',
+    quote: 'Dans cette communauté, chaque jeune a sa place — la mienne, je l\'ai trouvée ici.',
+    videoUrl: 'https://www.youtube.com/watch?v=sNZz31uEKZ0',
+  },
 ] as const
 
 export const dynamic = 'force-dynamic'
