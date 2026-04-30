@@ -470,6 +470,7 @@ button { font-family: inherit; }
 .testimonial-stage {
   padding: 48px;
   min-height: 480px;
+  grid-template-columns: 1fr 1fr;
 }
 @media (max-width: 720px) {
   .testimonial-stage {
