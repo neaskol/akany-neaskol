@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Nav from '@/components/Nav'
 import Reveal from '@/components/Reveal'
 import ImagePlaceholder from '@/components/ImagePlaceholder'
+import YouTubeFacade from '@/components/YouTubeFacade'
 import { PILLAR_COLORS, PILLAR_LABELS } from '@/lib/pillarColors'
 import { SEED_TESTIMONIALS } from '@/lib/seed'
 import { getPayloadClient, withTimeout } from '@/lib/payload'
@@ -192,12 +193,9 @@ export default async function TemoignagePage({ params }: { params: Promise<{ slu
               <Reveal>
                 <div className="eyebrow on-dark" style={{ marginBottom: 24 }}>Témoignage filmé</div>
                 <div style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', maxWidth: 800, margin: '0 auto' }}>
-                  <iframe
-                    src={`https://www.youtube-nocookie.com/embed/${vid}?rel=0`}
+                  <YouTubeFacade
+                    videoId={vid}
                     title={`Témoignage filmé de ${t.name}`}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    style={{ width: '100%', aspectRatio: '16/9', border: 0, display: 'block' }}
                   />
                 </div>
               </Reveal>

@@ -4,6 +4,7 @@ import { useState, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { PILLAR_COLORS } from '@/lib/pillarColors'
 import ImagePlaceholder from './ImagePlaceholder'
+import YouTubeFacade from './YouTubeFacade'
 
 interface Testimonial {
   slug: string
@@ -156,13 +157,10 @@ export default function TestimonialsCarousel({
         {/* Portrait / vidéo */}
         {youtubeId ? (
           <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', alignSelf: 'stretch', display: 'flex', flexDirection: 'column', justifyContent: 'center', background: 'var(--ink-900)', minHeight: 220 }}>
-            <iframe
+            <YouTubeFacade
               key={youtubeId}
-              src={`https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0`}
+              videoId={youtubeId}
               title={`Témoignage de ${t.name}`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{ width: '100%', aspectRatio: '16/9', border: 0, display: 'block' }}
             />
           </div>
         ) : (
