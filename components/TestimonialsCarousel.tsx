@@ -156,7 +156,7 @@ export default function TestimonialsCarousel({
 
         {/* Portrait / vidéo */}
         {youtubeId ? (
-          <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', alignSelf: 'stretch', display: 'flex', flexDirection: 'column', justifyContent: 'center', background: 'var(--ink-900)', minHeight: 220 }}>
+          <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', alignSelf: 'center', width: '100%' }}>
             <YouTubeFacade
               key={youtubeId}
               videoId={youtubeId}

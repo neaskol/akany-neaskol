@@ -12,7 +12,7 @@ export default function YouTubeFacade({ videoId, title, style }: Props) {
   const [active, setActive] = useState(false)
 
   const thumb = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`
-  const src = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&iv_load_policy=3&cc_load_policy=0&autoplay=1&controls=0`
+  const src = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&iv_load_policy=3&cc_load_policy=0&autoplay=1`
 
   const wrapStyle: React.CSSProperties = {
     display: 'block',

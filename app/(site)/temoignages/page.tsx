@@ -7,6 +7,11 @@ import { PILLAR_COLORS, PILLAR_LABELS } from '@/lib/pillarColors'
 import { SEED_TESTIMONIALS } from '@/lib/seed'
 import { getPayloadClient, withTimeout } from '@/lib/payload'
 
+function getYouTubeId(url: string): string | null {
+  const match = url.match(/[?&]v=([^&]{11})/)
+  return match ? match[1] : null
+}
+
 export const metadata: Metadata = {
   title: 'Témoignages',
   description: "Les témoignages des membres d'Akany Neaskol — spirituel, social et culturel.",
@@ -23,6 +28,7 @@ interface TestimonialItem {
   pillar: string
   since?: string | null
   quote: string
+  videoUrl?: string | null
 }
 
 const FILTERS = [
@@ -57,6 +63,7 @@ async function getTestimonials(pilier?: string): Promise<TestimonialItem[]> {
         pillar: d.pillar as string,
         since: (d.since as string | null) ?? null,
         quote: d.quote as string,
+        videoUrl: (d.videoUrl as string | null) ?? null,
       }))
     }
   } catch (err) {
@@ -148,10 +155,40 @@ export default async function TemoignagesPage({
                         border: '1px solid var(--line)',
                       }}
                     >
-                      <ImagePlaceholder
-                        label={`[portrait · ${t.name} · 800×600]`}
-                        style={{ aspectRatio: '4/3' }}
-                      />
+                      {(() => {
+                        const vid = t.videoUrl ? getYouTubeId(t.videoUrl) : null
+                        return vid ? (
+                          <div style={{
+                            aspectRatio: '4/3',
+                            backgroundImage: `url(https://i.ytimg.com/vi/${vid}/hqdefault.jpg)`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            position: 'relative',
+                          }}>
+                            <span aria-hidden style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.18)' }} />
+                            <span aria-hidden style={{
+                              position: 'absolute', inset: 0,
+                              display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            }}>
+                              <span style={{
+                                width: 52, height: 52, borderRadius: '50%',
+                                background: 'var(--lemon-500)',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+                              }}>
+                                <svg width="18" height="18" viewBox="0 0 22 22" fill="none" aria-hidden>
+                                  <path d="M7 4.5L18 11L7 17.5V4.5Z" fill="var(--ink-900)" />
+                                </svg>
+                              </span>
+                            </span>
+                          </div>
+                        ) : (
+                          <ImagePlaceholder
+                            label={`[portrait · ${t.name} · 800×600]`}
+                            style={{ aspectRatio: '4/3' }}
+                          />
+                        )
+                      })()}
                       <div style={{ padding: 28 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
                           <span style={{ width: 10, height: 10, borderRadius: '50%', background: color }} />
