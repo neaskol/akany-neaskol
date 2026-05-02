@@ -260,11 +260,8 @@ button { font-family: inherit; }
 
 /* ── Révélation au scroll ────────────────────────────── */
 .reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  opacity: 0; /* GSAP animates to 1 via autoAlpha */
 }
-.reveal.in { opacity: 1; transform: translateY(0); }
 
 /* ── Grain ───────────────────────────────────────────── */
 .grain::after {
@@ -424,7 +421,7 @@ button { font-family: inherit; }
 
 /* ── Reduced motion ──────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal { opacity: 1; }
   .ticker-track { animation: none; }
   @keyframes quoteIn {
     from { opacity: 1; transform: none; }

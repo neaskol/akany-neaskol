@@ -7,6 +7,7 @@ import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import { PILLAR_LABELS } from '@/lib/pillarColors'
 import { SEED_TESTIMONIALS, SEED_EVENTS } from '@/lib/seed'
 import { getPayloadClient, withTimeout } from '@/lib/payload'
+import HeroAnimation from '@/components/HeroAnimation'
 
 interface PayloadTestimonial {
   slug: string
@@ -141,6 +142,7 @@ export default async function HomePage() {
     <>
       {/* ── 01 Hero ─────────────────────────────────── */}
       <section
+        id="hero"
         className="grain"
         style={{
           position: 'relative',
@@ -191,7 +193,7 @@ export default async function HomePage() {
                 la <span className="it">société.</span>
               </h1>
 
-              <div style={{ display: 'flex', gap: 40, marginTop: 44, flexWrap: 'wrap' }}>
+              <div className="hero-pillars" style={{ display: 'flex', gap: 40, marginTop: 44, flexWrap: 'wrap' }}>
                 {PILLARS.map((p) => (
                   <div key={p.key} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     <span
@@ -257,6 +259,7 @@ export default async function HomePage() {
         </div>
 
         {/* TODO: ajouter la section partenaires une fois les vrais noms disponibles */}
+        <HeroAnimation />
       </section>
 
       {/* ── 02 Marquee ──────────────────────────────── */}
